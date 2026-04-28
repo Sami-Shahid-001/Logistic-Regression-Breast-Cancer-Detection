@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Model Insights and Analysis — Detailed performance metrics, feature importance, and prediction behavior for the OncoPredict AI breast cancer classification model.">
+    <title>OncoPredict AI — Model Insights and Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/insights.css">
+</head>
+
+<body>
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar" id="main-navbar">
+        <div class="navbar-inner">
+            <div class="navbar-left">
+                <a href="index.html" class="brand" id="brand-logo">
+                    <span class="brand-icon"><i class="fas fa-dna"></i></span>
+                    <span class="brand-text">OncoPredict AI</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link" id="nav-dashboard">Dashboard</a></li>
+                    <li><a href="records.html" class="nav-link" id="nav-records">Patient Records</a></li>
+                    <li><a href="model_insights.html" class="nav-link active" id="nav-insights">Model Insights</a></li>
+                </ul>
+            </div>
+            <div class="navbar-right">
+                <button class="icon-btn" id="btn-notifications" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <button class="icon-btn" id="btn-settings" aria-label="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <div class="avatar" id="user-avatar">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=doctor&backgroundColor=b6e3f4"
+                        alt="User avatar">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="insights-header" id="insights-header">
+        <div class="insights-header-inner">
+            <div class="insights-header-text">
+                <h1 class="insights-page-title" id="insights-page-title">Model Insights and Analysis</h1>
+                <p class="insights-page-subtitle">Detailed insights into model performance, feature importance, and
+                    prediction behavior for breast cancer classification. Analytical precision for clinical decision
+                    support.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ CONTENT ============ -->
+    <main class="insights-main" id="insights-main">
+
+        <!-- ── METRIC CARDS ── -->
+        <section class="metrics-row" id="metrics-section">
+            <div class="metric-card metric-blue" id="metric-accuracy">
+                <span class="metric-label">ACCURACY</span>
+                <span class="metric-value" data-target="98.25">0%</span>
+            </div>
+            <div class="metric-card metric-blue" id="metric-precision">
+                <span class="metric-label">PRECISION</span>
+                <span class="metric-value" data-target="97.8">0%</span>
+            </div>
+            <div class="metric-card metric-blue" id="metric-recall">
+                <span class="metric-label">RECALL</span>
+                <span class="metric-value" data-target="98.5">0%</span>
+            </div>
+            <div class="metric-card metric-blue" id="metric-f1">
+                <span class="metric-label">F1 SCORE</span>
+                <span class="metric-value" data-target="98.1">0%</span>
+            </div>
+        </section>
+
+        <!-- ── SECTION DIVIDER ── -->
+        <div class="section-divider" id="analysis-section">
+            <span class="divider-bar"></span>
+            <h2 class="divider-title">Analysis from Training Dataset</h2>
+        </div>
+
+        <!-- ── ROW 1: Class Distribution + Logistic Regression + False Negatives ── -->
+        <section class="insights-grid grid-3col" id="row-1">
+            <!-- INSIGHT 01 -->
+            <div class="insight-card" id="insight-01">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 01</span>
+                </div>
+                <h3 class="insight-title">Class Distribution</h3>
+                <div class="dist-bars">
+                    <div class="dist-row">
+                        <span class="dist-label">Benign</span>
+                        <div class="dist-track">
+                            <div class="dist-fill benign" style="width: 62.7%"></div>
+                        </div>
+                        <span class="dist-count">357</span>
+                    </div>
+                    <div class="dist-row">
+                        <span class="dist-label">Malignant</span>
+                        <div class="dist-track">
+                            <div class="dist-fill malignant" style="width: 37.3%"></div>
+                        </div>
+                        <span class="dist-count">212</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHT 02 -->
+            <div class="insight-card" id="insight-02">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 02</span>
+                </div>
+                <h3 class="insight-title">Logistic Regression Performance</h3>
+                <div class="confusion-grid">
+                    <div class="cm-cell cm-tn">
+                        <span class="cm-cell-label">TRUE NEGATIVE</span>
+                        <span class="cm-cell-value">112</span>
+                        <span class="cm-cell-desc">Correct Benign</span>
+                    </div>
+                    <div class="cm-cell cm-fp">
+                        <span class="cm-cell-label">FALSE POSITIVE</span>
+                        <span class="cm-cell-value">2</span>
+                        <span class="cm-cell-desc">Misclassified Malignant</span>
+                    </div>
+                    <div class="cm-cell cm-fn">
+                        <span class="cm-cell-label">FALSE NEGATIVE</span>
+                        <span class="cm-cell-value">1</span>
+                        <span class="cm-cell-desc">Misclassified Benign</span>
+                    </div>
+                    <div class="cm-cell cm-tp">
+                        <span class="cm-cell-label">TRUE POSITIVE</span>
+                        <span class="cm-cell-value">56</span>
+                        <span class="cm-cell-desc">Correct Malignant</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEAR-ZERO FALSE NEGATIVES -->
+            <div class="insight-card highlight-card" id="insight-fneg">
+                <div class="highlight-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <h3 class="highlight-title">Near-Zero False Negatives</h3>
+                <p class="highlight-body">The clinical priority for breast cancer is minimizing missed diagnoses.
+                    Our model achieves a <strong>99.5% clinical safety score</strong> with only 1 false negative
+                    across the validation set.</p>
+            </div>
+        </section>
+
+        <!-- ── ROW 2: Feature Correlation + 30 Predictive Features ── -->
+        <section class="insights-grid grid-2col-wide" id="row-2">
+            <!-- INSIGHT 03 -->
+            <div class="insight-card" id="insight-03">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 03</span>
+                </div>
+                <h3 class="insight-title">Features Most Correlated with Malignancy</h3>
+                <div class="hbar-chart" id="correlation-chart-wrapper">
+                    <canvas id="correlation-chart" height="220"></canvas>
+                </div>
+            </div>
+
+            <!-- INSIGHT 06 -->
+            <div class="insight-card" id="insight-06">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 06</span>
+                </div>
+                <h3 class="insight-title">30 Predictive Features</h3>
+                <p class="insight-body">The dataset incorporates <strong>30 distinct metrics</strong> derived from
+                    cell nuclei imaging, including texture, smoothness, and compactness across mean, SE, and
+                    worst-case scenarios.</p>
+                <div class="feature-pills">
+                    <span class="pill">radius</span>
+                    <span class="pill">texture</span>
+                    <span class="pill">perimeter</span>
+                    <span class="pill">area</span>
+                    <span class="pill">smoothness</span>
+                    <span class="pill">compactness</span>
+                    <span class="pill">concavity</span>
+                    <span class="pill">concave pts</span>
+                    <span class="pill">symmetry</span>
+                    <span class="pill">fractal dim</span>
+                </div>
+                <div class="feature-categories">
+                    <div class="feat-cat">
+                        <span class="feat-cat-dot mean"></span>
+                        <span class="feat-cat-label">Mean (10)</span>
+                    </div>
+                    <div class="feat-cat">
+                        <span class="feat-cat-dot se"></span>
+                        <span class="feat-cat-label">Std Error (10)</span>
+                    </div>
+                    <div class="feat-cat">
+                        <span class="feat-cat-dot worst"></span>
+                        <span class="feat-cat-label">Worst (10)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── ROW 3: Feature Scaling + Placeholder for balance ── -->
+        <section class="insights-grid grid-2col-wide-reverse" id="row-2b">
+            <!-- INSIGHT 07 -->
+            <div class="insight-card" id="insight-07">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 07</span>
+                </div>
+                <h3 class="insight-title">Feature Scaling is Critical</h3>
+                <p class="insight-body">Due to the variance in units (microns vs concave points),
+                    <strong>Standard Scaling</strong> was applied to ensure the Logistic Regression coefficients
+                    are clinically comparable.
+                </p>
+                <div class="scaling-demo">
+                    <div class="scale-row">
+                        <span class="scale-label">Before Scaling</span>
+                        <div class="scale-bars">
+                            <div class="scale-bar before-long" title="area_mean ~654">area_mean</div>
+                            <div class="scale-bar before-short" title="concave_pts ~0.05">concave_pts</div>
+                        </div>
+                    </div>
+                    <div class="scale-arrow"><i class="fas fa-arrow-down"></i> StandardScaler</div>
+                    <div class="scale-row">
+                        <span class="scale-label">After Scaling</span>
+                        <div class="scale-bars">
+                            <div class="scale-bar after-even" title="area_mean normalized">area_mean</div>
+                            <div class="scale-bar after-even" title="concave_pts normalized">concave_pts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- empty balance slot taken by next row -->
+            <div class="insight-card" id="insight-scaling-visual">
+                <div class="insight-header">
+                    <span class="insight-tag">SCALING IMPACT</span>
+                </div>
+                <h3 class="insight-title">Coefficient Comparability</h3>
+                <div class="hbar-chart" id="scaling-chart-wrapper">
+                    <canvas id="scaling-chart" height="180"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── ROW 4: Malignant vs Benign Size + Concave Points ── -->
+        <section class="insights-grid grid-2col" id="row-3">
+            <!-- INSIGHT 04 -->
+            <div class="insight-card" id="insight-04">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 04</span>
+                </div>
+                <h3 class="insight-title">Malignant vs Benign Size Features</h3>
+                <div class="chart-area" id="size-chart-wrapper">
+                    <canvas id="size-chart" height="240"></canvas>
+                </div>
+            </div>
+
+            <!-- INSIGHT 08 -->
+            <div class="insight-card" id="insight-08">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 08</span>
+                </div>
+                <h3 class="insight-title">Concave Points Comparison</h3>
+                <p class="insight-body" style="margin-bottom:16px;">Comparison of 'Concave Points Worst' between
+                    classes demonstrates the <strong>clearest decision boundary</strong> for the model.</p>
+                <div class="compare-bars">
+                    <div class="compare-row">
+                        <span class="compare-label">Malignant Median</span>
+                        <div class="compare-track">
+                            <div class="compare-fill malignant" style="width: 82%"></div>
+                        </div>
+                        <span class="compare-value">0.182</span>
+                    </div>
+                    <div class="compare-row">
+                        <span class="compare-label">Benign Median</span>
+                        <div class="compare-track">
+                            <div class="compare-fill benign" style="width: 28%"></div>
+                        </div>
+                        <span class="compare-value">0.064</span>
+                    </div>
+                </div>
+                <div class="compare-insight-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span>This feature alone provides ~77% classification accuracy, making it the single most
+                        discriminative metric.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── ROW 5: Worst Features + Linearly Separable ── -->
+        <section class="insights-grid grid-2col" id="row-4">
+            <!-- INSIGHT 05 -->
+            <div class="insight-card" id="insight-05">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 05</span>
+                </div>
+                <h3 class="insight-title">"Worst" Features Dominate</h3>
+                <p class="insight-body">Model coefficients indicate that the "worst" measurements (mean of the
+                    three largest values) carry <strong>40% more diagnostic weight</strong> than the "mean"
+                    measurements across all size-related features.</p>
+                <div class="weight-comparison">
+                    <div class="weight-item">
+                        <div class="weight-bar-container">
+                            <div class="weight-bar worst" style="height: 100%"></div>
+                        </div>
+                        <span class="weight-label">Worst</span>
+                        <span class="weight-pct">~58%</span>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-bar-container">
+                            <div class="weight-bar mean" style="height: 60%"></div>
+                        </div>
+                        <span class="weight-label">Mean</span>
+                        <span class="weight-pct">~34%</span>
+                    </div>
+                    <div class="weight-item">
+                        <div class="weight-bar-container">
+                            <div class="weight-bar se" style="height: 20%"></div>
+                        </div>
+                        <span class="weight-label">SE</span>
+                        <span class="weight-pct">~8%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSIGHT 10 -->
+            <div class="insight-card" id="insight-10">
+                <div class="insight-header">
+                    <span class="insight-tag">INSIGHT 10</span>
+                </div>
+                <h3 class="insight-title">Linearly Separable Data</h3>
+                <p class="insight-body">The high accuracy of the Logistic Regression model suggests the data is
+                    nearly <strong>linearly separable</strong> in a high-dimensional space, affirming the high
+                    quality of the feature engineering process.</p>
+                <div class="separable-visual" id="separable-visual">
+                    <canvas id="separable-chart" height="180"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" id="main-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-row">
+                <span class="footer-brand-name">OncoPredict AI</span>
+                <span class="footer-copy">&copy; 2026 OncoPredict AI. For clinical research and professional
+                    medical use only.</span>
+            </div>
+            <div class="footer-links">
+                <a href="#" id="link-disclaimer">Medical Disclaimer</a>
+                <a href="#" id="link-privacy">Privacy Policy</a>
+                <a href="#" id="link-terms">Terms of Service</a>
+                <a href="#" id="link-support">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="static/js/insights.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Patient Records History — Comprehensive archive of diagnostic metrics and AI-driven predictions from OncoPredict AI.">
+    <title>OncoPredict AI — Patient Records History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/records.css">
+</head>
+
+<body>
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar" id="main-navbar">
+        <div class="navbar-inner">
+            <div class="navbar-left">
+                <a href="index.html" class="brand" id="brand-logo">
+                    <span class="brand-icon">
+                        <i class="fas fa-dna"></i>
+                    </span>
+                    <span class="brand-text">OncoPredict AI</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link" id="nav-dashboard">Dashboard</a></li>
+                    <li><a href="records.html" class="nav-link active" id="nav-records">Patient Records</a></li>
+                    <li><a href="model_insights.html" class="nav-link" id="nav-insights">Model Insights</a></li>
+                </ul>
+            </div>
+            <div class="navbar-right">
+                <div class="navbar-search" id="navbar-search">
+                    <i class="fas fa-search navbar-search-icon"></i>
+                    <input type="text" id="navbar-search-input" placeholder="Search patient ID..." autocomplete="off">
+                </div>
+                <button class="icon-btn" id="btn-notifications" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <button class="icon-btn" id="btn-settings" aria-label="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="icon-btn" id="btn-help" aria-label="Help">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+                <div class="user-profile" id="user-profile">
+                    <div class="user-info">
+                        <span class="user-name">Dr. Aris Thorne</span>
+                        <span class="user-role">Senior Oncologist</span>
+                    </div>
+                    <div class="avatar" id="user-avatar">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=doctor&backgroundColor=b6e3f4"
+                            alt="User avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="page-header" id="page-header">
+        <div class="page-header-inner">
+            <div class="page-header-text">
+                <h1 class="page-title" id="page-title">Patient Records History</h1>
+                <p class="page-subtitle">Comprehensive archive of diagnostic metrics and AI-driven predictions.</p>
+            </div>
+            <div class="page-header-stats">
+                <div class="header-stat" id="stat-total">
+                    <span class="header-stat-value" id="total-records-count">0</span>
+                    <span class="header-stat-label">Total Records</span>
+                </div>
+                <div class="header-stat" id="stat-benign">
+                    <span class="header-stat-value header-stat-benign" id="benign-count">0</span>
+                    <span class="header-stat-label">Benign</span>
+                </div>
+                <div class="header-stat" id="stat-malignant">
+                    <span class="header-stat-value header-stat-malignant" id="malignant-count">0</span>
+                    <span class="header-stat-label">Malignant</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ MAIN TABLE CARD ============ -->
+    <main class="records-container" id="records-main">
+        <div class="records-card" id="records-card">
+            <!-- TOOLBAR -->
+            <div class="records-toolbar" id="records-toolbar">
+                <div class="toolbar-left">
+                    <div class="search-box" id="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="search-input" placeholder="Filter records by ID, result or metrics..."
+                            autocomplete="off">
+                    </div>
+                </div>
+                <div class="toolbar-right">
+                    <label class="rows-label" for="rows-select">SHOW:</label>
+                    <div class="select-wrapper">
+                        <select id="rows-select">
+                            <option value="5">5 rows</option>
+                            <option value="10" selected>10 rows</option>
+                            <option value="20">20 rows</option>
+                            <option value="50">50 rows</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABLE WRAPPER -->
+            <div class="table-wrapper" id="table-wrapper">
+                <table class="records-table" id="records-table">
+                    <thead>
+                        <tr>
+                            <th class="th-sortable" data-col="id">
+                                PATIENT ID <i class="fas fa-sort sort-icon"></i>
+                            </th>
+                            <th class="th-sortable" data-col="radius_mean">
+                                RADIUS_MEAN <i class="fas fa-sort sort-icon"></i>
+                            </th>
+                            <th data-col="texture_mean">TEXTURE_MEAN</th>
+                            <th data-col="perimeter_mean">PERIMETER_MEAN</th>
+                            <th data-col="area_mean">AREA_MEAN</th>
+                            <th data-col="smoothness_mean">SMOOTHNESS_MEAN</th>
+                            <th data-col="compactness_mean">COMPACTNESS_MEAN</th>
+                            <th data-col="concavity_mean">CONCAVITY_MEAN</th>
+                            <th data-col="concave_points_mean">CONCAVE POINTS_MEAN</th>
+                            <th data-col="symmetry_mean">SYMMETRY_MEAN</th>
+                            <th data-col="prediction">PREDICTION</th>
+                            <th data-col="probability">PROBABILITY</th>
+                            <th data-col="timestamp">TIMESTAMP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-tbody">
+                        <!-- Rows populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- TABLE FOOTER -->
+            <div class="table-footer" id="table-footer">
+                <span class="table-info" id="table-info">Showing 1 to 10 of 0 records</span>
+                <div class="pagination" id="pagination">
+                    <!-- Pagination buttons rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============ DISCLAIMER ============ -->
+    <section class="disclaimer-section" id="disclaimer-section">
+        <div class="disclaimer-card">
+            <div class="disclaimer-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="disclaimer-body">
+                <p class="disclaimer-text">
+                    <strong>Clinical Disclaimer:</strong> All predictions displayed are AI-assisted interpretations
+                    generated by the OncoPredict v2.4 model. These results are intended to support clinical
+                    decision-making and must be reviewed and verified by a licensed medical professional before any
+                    diagnostic or therapeutic action is taken.
+                </p>
+                <div class="disclaimer-meta">
+                    <span>MODEL CONFIDENCE INDEX: 98.4%</span>
+                    <span>LAST UPDATED: APR 27, 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer records-footer" id="main-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-brand-text">OncoPredict AI</span>
+                <span class="footer-copyright">&copy; 2026 MedTech Intelligence Systems. All rights reserved.</span>
+            </div>
+            <div class="footer-links">
+                <a href="#" id="link-privacy">PRIVACY POLICY</a>
+                <a href="#" id="link-terms">TERMS OF SERVICE</a>
+                <a href="#" id="link-hipaa">COMPLIANCE (HIPAA)</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/records.js"></script>
+</body>
+
+</html>
