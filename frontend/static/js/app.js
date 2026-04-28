@@ -138,7 +138,6 @@
         );
 
         try {
-            // 🔥 CALL BACKEND
             const response = await fetch("http://127.0.0.1:5000/predict", {
                 method: "POST",
                 headers: {
@@ -168,7 +167,6 @@
                 probBenign: 1 - data.probability
             };
 
-            // ✅ Save record
             saveRecord(values, result);
 
             // ── UI update ──
